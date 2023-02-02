@@ -1,5 +1,66 @@
-<!--
-    Replace this with your working code from Lab 2, and include:
-    - The styles in this folder's `style.css`
-    - The script in script.js, which should be included via a `<script src="script.js" >` call before your closing </body> tag 
--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will Hamilton - Lab3</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- defer in the 'script' tag waits until page has finished loading -->
+  <script type="text/javascript" src="script.js" defer></script>
+</head>
+<body class="wrapper">
+  <header class="header">
+    <h1>Will's Labs for INST377</h1>
+  </header>
+  <div class="container">
+    <div class="box left_section">
+      <h2 class="subtitle">Album Names</h2>
+      <ol class="box">
+        <li>'Minecraft - Volume Beta' - C418</li>
+        <li>'NEW MAGIC WAND' - Tyler, The Creator</li>
+        <li>'Minecraft - Volume Alpha' - C418</li>
+        <li>'Isolation' - Kali Uchis</li>
+        <li>'Discovery' - Daft Punk</li>
+      </ol>
+    </div>
+    <div class="box right_section">
+      <h2 class="subtitle">Image Carousel</h2>
+
+      <!-- i left grid on to make all images square -->
+      <!-- not sure if that's what assignment was asking for tho -->
+      <div class="carousel">
+        <button class="prev">
+            prev
+        </button>
+
+        <div class="slides">
+            <div class="carousel_item visible">
+                <img src="images/fosh0.jpeg" alt="orange fosh">
+            </div>
+            <div class="carousel_item hidden">
+                <img src="images/fosh1.jpeg" alt="weird fosh">
+            </div>
+            <div class="carousel_item hidden">
+                <img src="images/fosh2.jpeg" alt="nemo">
+            </div>
+            <div class="carousel_item hidden">
+                <img src="images/fosh3.jpeg" alt="this thang">
+            </div>
+        </div>
+
+        <button class="next">
+            next
+        </button>
+        </div>
+      <div class="box">
+        I really like pictures of dumb looking fish, so here's a small portion of my collection.
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <a href="https://github.com/foshesss">Github account</a>
+  </footer>
+</body>
+</html>
