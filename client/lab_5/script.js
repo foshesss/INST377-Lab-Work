@@ -3,6 +3,17 @@
   by adding `<script src="script.js">` just before your closing `</body>` tag
 */
 
+/* A quick filter that will return something based on a matching input */
+function filterList(list, query) {
+  /*
+    Using the .filter array method, 
+    return a list that is filtered by comparing the item name in lower case
+    to the query in lower case
+
+    Ask the TAs if you need help with this
+  */
+}
+
 async function mainEvent() { // the async keyword means we can make API requests
   const BASE_CONTENT = "A list of resturants from an API<br><br>"
   const form = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
@@ -13,6 +24,7 @@ async function mainEvent() { // the async keyword means we can make API requests
     const formData = new FormData(event.target);
     const formProps = Object.fromEntries(formData);
 
+    // Basic GET request - this replaces the form Action
     const results = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');
     let arrayFromJson = await results.json();
 
