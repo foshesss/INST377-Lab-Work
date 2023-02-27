@@ -31,7 +31,38 @@ form input {
 @media only screen and (max-width: 736px){
     /* Rules in here will only apply when a screen is the correct size */
     /* check it out by using your developer tools to shrink your screen-size */
-    .container {
-      background-color: rgba(204, 8, 162, 0.65);
-    }
+}
+
+/* Remaining Styles */
+
+header {
+  padding: 0 .75rem;
+  border: dashed;
+}
+
+footer {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  width: calc(100% - 3.25rem); /* calc used to account for margin in 'html' and padding in 'footer' */
+
+  position: fixed;
+  bottom: .5rem;
+}
+
+.dashed-border {
+  border: dashed;
+  border-width: 2px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.container {
+  padding: 1rem;
 }
