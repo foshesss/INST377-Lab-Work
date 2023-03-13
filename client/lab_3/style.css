@@ -68,8 +68,8 @@ form {
 .container {
   margin: 0 20px;
   display: flex;
-  justify-content: space-evenly;
-  align-items: start;
+  /* justify-content: space-evenly; */
+  align-items: flex-start;
   flex:1;
 }
 

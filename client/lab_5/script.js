@@ -4,63 +4,55 @@
 */
 
 async function mainEvent() { // the async keyword means we can make API requests
+  const BASE_CONTENT = "A list of resturants from an API<br><br>"
   const form = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
-  form.addEventListener('submit', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
-    submitEvent.preventDefault(); // This prevents your page from going to http://localhost:3000/api even if your form still has an action set on it
-    console.log('form submission'); // this is substituting for a "breakpoint"
+  const restaurantList = document.querySelector("#restaurant_list")
 
-    /*
-      ## GET requests and Javascript
-        We would like to send our GET request so we can control what we do with the results
-        But this blocks us sending a query string by default - ?resto='' won't exist
-
-        Let's get those form results before sending off our GET request using the Fetch API
-    */
-
-    // this is the preferred way to handle form data in JS in 2022
-    const formData = new FormData(submitEvent.target); // get the data from the listener target
-    const formProps = Object.fromEntries(formData); // Turn it into an object
-
-    // You can also access all forms in a document by using the document.forms collection
-    // But this will retrieve ALL forms, not just the one that "heard" a submit event - less good
-
-    /*
-      ## Retrieving information from an API
-        The Fetch API is relatively new,
-        and is much more convenient than previous data handling methods.
-        Here we make a basic GET request to the server using the Fetch method
-        to send a request to the routes defined in /server/routes/foodServiceRoutes.js
-
-      // this is a basic GET request
-      // It does not include any of your form values, though
-    */
+  // retrive data based on an event's target data
+  const retrieveData = async event => {
+    const formData = new FormData(event.target);
+    const formProps = Object.fromEntries(formData);
 
     const results = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');
-    /*
-   ## Get request with query parameters
+    let arrayFromJson = await results.json();
 
-      const results = await fetch(`/api/foodServicePG?${new URLSearchParams(formProps)}`);
+    // make this a set, removing duplicates
+    // after it's become a set, convert back to an array in order
+    // to access array methods
+    arrayFromJson = Array.from(
+      new Set(arrayFromJson.map(({name, establishment_id}) =>
+            `${name.toLowerCase()}, id: ${establishment_id}`
+      )));
 
-      The above request uses "string interpolation" to include an encoded version of your form values
-      It works because it has a ? in the string
-      Replace line 37 with it, and try it with a / instead to see what your server console says
+    return [arrayFromJson, formProps]
+  }
 
-      You can check what you sent to your server in your GET request
-      By opening the "network" tab in your browser developer tools and looking at the "name" column
-      This will also show you how long it takes a request to resolve
-    */
+  // initial load
+  let [data] = await retrieveData({target: form})
 
-    // This changes the response from the GET into data we can use - an "object"
-    const arrayFromJson = await results.json();
-    console.table(arrayFromJson.data); // this is called "dot notation"
-    // arrayFromJson.data - we're accessing a key called 'data' on the returned object
-    // it initially contains all 1,000 records from your request
+  // void function that updates data. filters based on 'restto' value. looks for all 
+  // restaurants containing that value
+  const filterList = async () => {
+    // use retrieveData to get json (in array format) + formProps for parsing
+    const [list, formProps] = await retrieveData({target: form})
+    const target = formProps.resto.toLowerCase()
+    data = list.filter(name =>  name.toLowerCase().includes(target))
+  }
+
+  // submit data-- display it on the site
+  form.addEventListener('submit', async (submitEvent) => {
+    submitEvent.preventDefault();
+    const content = data.length === 0 ? "No results found." : data.join("<br>")
+    restaurantList.innerHTML = BASE_CONTENT + content
   });
+
+  // filter data
+  const filterButton = document.querySelector("#form_filter_button")
+  filterButton.addEventListener('click', async () => {
+    console.log("clicked filterButton")
+    await filterList()
+    console.table(data)
+  })
 }
 
-/*
-  This adds an event listener that fires our main event only once our page elements have loaded
-  The use of the async keyword means we can "await" events before continuing in our scripts
-  In this case, we load some data when the form has submitted
-*/
 document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests
