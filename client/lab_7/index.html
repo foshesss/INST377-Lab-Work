@@ -1,0 +1,50 @@
+<!--
+    This is how to build the CSS-only load animation from loading.io    
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+    This is helpful for showing your client-side users when data is loading,
+    since there's otherwise no sign your app is thinking about something!
+
+    Try placing it at the same level in your element tree as your Submit button
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will's Local Restaurants</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h2>Will's Labs for INST377</h2>
+    </header>
+    <div class="container">
+        <div class="box left_section">
+            <h2>Form Inputs</h2>
+            <form
+                class="box main_form" 
+                action="https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
+            >
+                <label for="">Restaurant Name</label>
+                <input name="resto" id="resto">
+                <button type="submit">Load Data</button>
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </form>
+        </div>
+    
+        <div class="box right_section">
+            <h2>Local Restaurants</h2>
+            <div class="box container" id="restaurant_list">
+                A list of resturants from an API
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer box">
+        <a href="https://github.com/foshesss">Github account</a>
+      </footer>
+</body>
+</html>
