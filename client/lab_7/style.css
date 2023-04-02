@@ -1,0 +1,193 @@
+/* 
+    New code bonus: pure CSS data loading icon
+    This comes from loading.io/css - it's nice to show that something is happening!
+*/
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+
+
+/*
+Form Styles
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+form {
+  margin: 0;
+}
+
+form input {
+  /* This is a hack to make sure our boxes line up with one another nicely */
+  width: 100%;
+  width: -moz-available;          /* WebKit-based browsers will ignore this. */
+  width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  width: fill-available;
+
+  /* here we are setting white space correctly */
+  margin-bottom: 1rem;
+  height: 2rem;
+  border-radius: 4px;
+}
+
+form label {
+  width: 100%;
+  width: -moz-available;          /* WebKit-based browsers will ignore this. */
+  width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  width: fill-available;
+  align-items: flex-start;
+
+  display: block; /* this turns the label text into a box we can set margins on */
+  margin-bottom: 0.5rem;
+}
+
+
+/* Remaining styles */
+
+.header {
+  margin: 0;
+  border: 2px dashed;
+  padding: 1rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  background: orange;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.box {
+  background-color: rgba(239, 239, 239, 0.40);
+  border: 2px dashed;
+  border-radius: 4px;
+
+  width: fit-content;
+  height:fit-content;
+  padding: 1.5rem;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.container > * {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.left_section {
+  margin: 1rem;
+  padding: 1.5rem;
+  background: peru;
+  max-width: 450px;
+}
+
+.right_section {
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  align-items: center;
+  background: gold;
+  max-width: 450px;
+}
+
+.footer {
+  flex-shrink: 0;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  width: calc(100% - 3.25rem); /* calc used to account for margin in 'html' and padding in 'footer' */
+
+  position: fixed;
+  bottom: .5rem;
+  background: goldenrod;
+}
+
+.footer a {
+  text-decoration: underline;
+}
+
+/* larger screens */
+@media only screen and (min-width: 736px){
+  .container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .right_section {
+    background: lightblue;
+  }
+
+  .left_section {
+    background: lightcoral;
+  }
+
+  .footer {
+    background: lightgreen;
+  }
+
+  .header {
+    background: lightpink;
+  }
+}
