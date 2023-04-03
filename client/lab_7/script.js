@@ -13,6 +13,7 @@ async function mainEvent() { // the async keyword means we can make API requests
   let displayData = []
 
   submitButton.classList.add("hidden")
+  console.log(submitButton.classList)
 
   // retrive data from the pg api
   const retrieveData = async () => {
@@ -35,9 +36,10 @@ async function mainEvent() { // the async keyword means we can make API requests
     displayData = data.filter(name => name.toLowerCase().includes(target));
   }
 
-  const displayResults = () => {
-    const content = displayData.length === 0 ?
-      "No results found." : displayData.join("<br>")
+  const displayResults = (results) => {
+    results = results || displayData
+    const content = results.length === 0 ?
+      "No results found." : `<ol><li>${results.join("</li><li>")}</li></ol>`
     restaurantList.innerHTML = BASE_CONTENT + content
   }
 
@@ -45,10 +47,11 @@ async function mainEvent() { // the async keyword means we can make API requests
   // submit data-- display it on the site
   form.addEventListener('submit', (submitEvent) => {
     submitEvent.preventDefault();
+    let results = displayData.slice(0, 15)
 
     // shuffle array (seems like we should be shuffling here based on vid)
-    displayData.sort(() => Math.random() - 0.5);
-    displayResults()
+    results.sort(() => Math.random() - 0.5);
+    displayResults(results)
   });
 
   retrieveDataButton.addEventListener('click', retrieveData)
@@ -62,7 +65,7 @@ async function mainEvent() { // the async keyword means we can make API requests
   })
 
   textField.addEventListener('input', async (event) => {
-    filterList(event.value)
+    filterList(event.target.value)
     displayResults()
   })
 }

@@ -168,6 +168,10 @@ form label {
   text-decoration: underline;
 }
 
+.hidden {
+  display: none;
+}
+
 /* larger screens */
 @media only screen and (min-width: 736px){
   .container {
@@ -189,9 +193,5 @@ form label {
 
   .header {
     background: lightpink;
-  }
-  
-  .hidden {
-    display: none;
   }
 }
