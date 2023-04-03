@@ -190,4 +190,8 @@ form label {
   .header {
     background: lightpink;
   }
+  
+  .hidden {
+    display: none;
+  }
 }

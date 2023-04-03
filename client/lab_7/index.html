@@ -1,12 +1,9 @@
-<!--
-    This is how to build the CSS-only load animation from loading.io    
-    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+<!-- Bring in your successful HTML/CSS from the Flexbox lab -->
+<!-- Your page will need a form in it, but that form will not need an action
+    You will need to add the attribute "name" to your input
+    with a value of 'resto'
 
-    This is helpful for showing your client-side users when data is loading,
-    since there's otherwise no sign your app is thinking about something!
-
-    Try placing it at the same level in your element tree as your Submit button
--->
+<!-- Temporarily unhook your script.js file from your main index file -->
 
 <html lang="en">
 <head>
@@ -28,10 +25,11 @@
                 class="box main_form" 
                 action="https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
             >
-                <label for="">Restaurant Name</label>
+                <button id="retrieve-data-button" type="button">Retrieve data</button>
+                <label for="resto">Restaurant Name</label>
                 <input name="resto" id="resto">
-                <button type="submit">Load Data</button>
-                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                <button id="form_filter_button" type="button">Filter Data</button>
+                <button id="submit-button" type="submit">Load Data</button>
             </form>
         </div>
     
