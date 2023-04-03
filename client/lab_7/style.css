@@ -3,6 +3,10 @@
     This comes from loading.io/css - it's nice to show that something is happening!
 */
 
+ol {
+  display: block;
+}
+
 .lds-ellipsis {
     display: inline-block;
     position: relative;
